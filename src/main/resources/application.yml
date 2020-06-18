@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-35-174-127-63.compute-1.amazonaws.com/d4bh3opte09s6b
+    username: aygzwzwrhbndkr
+    password: ef435e1546a67fc6f5351a144389eb4a20e65542e2e511161948965796a73144
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+security:
+
+  unsecured-uris:
+    - '/'
+    - '/v2/api-docs'
+    - '/configuration/**'
+    - '/swagger-resources/**'
+    - '/swagger-ui.html'
+    - '/webjars/**'
+    - '/resources/**'
+    - '/static/**'
+  cors:
+    allowed-origins:
+      - '*'
+    allowed-methods:
+      - 'GET'
+      - 'POST'
+      - 'DELETE'
+      - 'PATCH'
+      - 'PUT'
+      - 'OPTIONS'
+  unsecured-endpoints:
+    get:
+      - '/api/users'
+    put:
+
+      - '/actuator/**'
+    post:
+      - '/api/users'
+      - '/actuator/**'
+    delete:
+      - '/actuator/**'
+
+  java:
+    runtime:
+      version=11:
+
+server:
+  port:  ${PORT:7004}
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka/
+
+
